@@ -17,7 +17,7 @@
         android:id="@+id/txtLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Login name"
+        android:hint="@string/txtLogin"
         android:inputType="textEmailAddress" />
 
     <TextView
@@ -31,4 +31,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblLogin"
+        android:onClick="onLogin"/>
 </LinearLayout>
