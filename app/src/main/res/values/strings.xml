@@ -6,4 +6,10 @@
     <string name="txtLogin">Login name</string>
     <string name="lblPassword">Password</string>
     <string name="lblSwitch">What does this do?</string>
+    <string name="dialog_message">Do you want to finish the activity?</string>
+    <string name="dialog_title">Attention</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
+    <string name="dialog_switchOn">Switch is On</string>
+    <string name="dialog_switchOff">Switch is Off</string>
 </resources>

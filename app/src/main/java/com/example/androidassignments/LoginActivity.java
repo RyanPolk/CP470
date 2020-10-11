@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
     protected static final String ACTIVITY_NAME = "LoginActivity";
-    private String fileName = "loginEmail";
+    protected static final String FILE_NAME = "loginEmail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +21,26 @@ public class LoginActivity extends AppCompatActivity {
         //Log which function we are currently in
         Log.i(ACTIVITY_NAME, "In onCreate()");
         //Open shared preference from file location and retrieve DefaultEmail
-        SharedPreferences prefs = getSharedPreferences(fileName, MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
         String email = prefs.getString("DefaultEmail", "email@domain.com");
         //Get EditText from layout and set the text as DefaultEmail value
         EditText txtLogin = findViewById(R.id.txtLogin);
         txtLogin.setText(email);
+    }
+
+    public void onLogin(View view) {
+        //Get EditText from layout and set email as string from txtLogin
+        EditText txtLogin = findViewById(R.id.txtLogin);
+        String email = txtLogin.getText().toString();
+        //Open shared preference from file location and open editor
+        SharedPreferences prefs = getSharedPreferences(FILE_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        //Edit the DefaultEmail to be text from email and commit changes
+        edit.putString("DefaultEmail", email);
+        edit.commit();
+        //Create intent to open MainActivity
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -56,20 +71,5 @@ public class LoginActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(ACTIVITY_NAME, "In onDestroy()");
-    }
-
-    public void onLogin(View view) {
-        //Get EditText from layout and set email as string from txtLogin
-        EditText txtLogin = findViewById(R.id.txtLogin);
-        String email = txtLogin.getText().toString();
-        //Open shared preference from file location and open editor
-        SharedPreferences prefs = getSharedPreferences(fileName, MODE_PRIVATE);
-        SharedPreferences.Editor edit = prefs.edit();
-        //Edit the DefaultEmail to be text from email and commit changes
-        edit.putString("DefaultEmail", email);
-        edit.commit();
-        //Create intent to open MainActivity
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
     }
 }
