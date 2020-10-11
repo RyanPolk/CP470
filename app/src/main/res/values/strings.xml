@@ -2,4 +2,7 @@
     <string name="app_name">Assignment 1</string>
     <string name="hello_message">Hello World!</string>
     <string name="ButtonText">I\’m a button</string>
+    <string name="lblLogin">Login</string>
+    <string name="lblPassword">Password</string>
+    <string name="lblSwitch">What does this do?</string>
 </resources>
