@@ -45,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void startChat(View view) {
+        Log.i(ACTIVITY_NAME, "User clicked Start Chat");
+        Intent intent = new Intent(this, ChatWindow.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();

@@ -12,4 +12,6 @@
     <string name="cancel">No</string>
     <string name="dialog_switchOn">Switch is On</string>
     <string name="dialog_switchOff">Switch is Off</string>
+    <string name="btnChat">Start Chat</string>
+    <string name="btnSend">Send</string>
 </resources>

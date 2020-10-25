@@ -13,4 +13,6 @@
     <string name="cancel">Non</string>
     <string name="dialog_switchOn">L\'interrupteur est activé</string>
     <string name="dialog_switchOff">Le commutateur est désactivé</string>
+    <string name="btnChat">Démarrer la discussion</string>
+    <string name="btnSend">Envoyer</string>
 </resources>
