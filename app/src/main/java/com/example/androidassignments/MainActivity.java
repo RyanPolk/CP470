@@ -2,7 +2,6 @@ package com.example.androidassignments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
     public void startChat(View view) {
         Log.i(ACTIVITY_NAME, "User clicked Start Chat");
         Intent intent = new Intent(this, ChatWindow.class);
+        startActivity(intent);
+    }
+
+    public void startToolbar(View view) {
+        Log.i(ACTIVITY_NAME, "User clicked Test Toolbar");
+        Intent intent = new Intent(this, TestToolbar.class);
         startActivity(intent);
     }
 

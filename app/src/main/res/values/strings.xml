@@ -14,4 +14,6 @@
     <string name="dialog_switchOff">Switch is Off</string>
     <string name="btnChat">Start Chat</string>
     <string name="btnSend">Send</string>
+    <string name="btnToolbar">Test Toolbar</string>
+    <string name="title_activity_test_toolbar2">Toolbar</string>
 </resources>

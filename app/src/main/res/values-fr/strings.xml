@@ -15,4 +15,6 @@
     <string name="dialog_switchOff">Le commutateur est désactivé</string>
     <string name="btnChat">Démarrer la discussion</string>
     <string name="btnSend">Envoyer</string>
+    <string name="btnToolbar">Barre d\'outils de test</string>
+    <string name="title_activity_test_toolbar2">Barre d\'outils</string>
 </resources>
