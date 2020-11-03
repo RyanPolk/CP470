@@ -13,7 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
-        tools:srcCompat="@android:drawable/ic_dialog_info" />
+        android:scaleType="centerInside"
+        android:src="@drawable/bubble"
+        app:srcCompat="@drawable/bubble"
+        tools:srcCompat="@drawable/bubble" />
 
     <EditText
         android:id="@+id/etDialog"
