@@ -2,8 +2,12 @@ package com.example.androidassignments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +19,16 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.androidassignments.ListItemsActivity.ACTIVITY_NAME;
+
 public class ChatWindow extends AppCompatActivity {
     private static ListView chat;
     private static EditText etMessage;
     private static Button btnSend;
     private ArrayList<String> messages = new ArrayList<String>();
     private ChatAdapter messageAdapter;
+    private ChatDatabaseHelper dbHelper;
+    private SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +38,32 @@ public class ChatWindow extends AppCompatActivity {
         chat = findViewById(R.id.chatView);
         etMessage = findViewById(R.id.etMessage);
         btnSend = findViewById(R.id.btnSend);
-        //in this case, “this” is the ChatWindow, which is-A Context object
+        //In this case, “this” is the ChatWindow, which is-A Context object
         messageAdapter =new ChatAdapter( this );
         chat.setAdapter(messageAdapter);
+        //Open SQLiteDatabase using ChatDatabaseHelper
+        dbHelper = new ChatDatabaseHelper(this);
+        database = dbHelper.getWritableDatabase();
+        //Add all database messages to the messages ArrayList
+        String sSQL = "SELECT KEY_MESSAGE FROM messages;";
+        Cursor cursor = database.rawQuery(sSQL, null);
+        Log.i(ACTIVITY_NAME, "Cursor’s column count = " + cursor.getColumnCount());
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast()) {
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex("KEY_MESSAGE")));
+            messages.add(cursor.getString(cursor.getColumnIndex("KEY_MESSAGE")));
+            cursor.moveToNext();
+        }
+        cursor.close();
     }
 
     //Gets the text in the EditText field, and adds it to your array list
     public void sendMessage(View view) {
+        //Add text from EditText to database
+        ContentValues values = new ContentValues();
+        values.put(dbHelper.ITEM_NAME, etMessage.getText().toString());
+        database.insert(dbHelper.TABLE_Of_My_ITEMS, null, values);
+        //Add text from EditText to messages
         messages.add(etMessage.getText().toString());
         messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount()/getView()
         etMessage.setText("");
@@ -71,8 +98,12 @@ public class ChatWindow extends AppCompatActivity {
             return result;
 
         }
-
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dbHelper.close();
+        database.close();
+    }
 }
