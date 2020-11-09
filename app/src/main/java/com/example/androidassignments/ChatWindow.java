@@ -48,10 +48,11 @@ public class ChatWindow extends AppCompatActivity {
         String sSQL = "SELECT KEY_MESSAGE FROM messages;";
         Cursor cursor = database.rawQuery(sSQL, null);
         Log.i(ACTIVITY_NAME, "Cursor’s column count = " + cursor.getColumnCount());
+        Log.i(ACTIVITY_NAME, "Column name = " + cursor.getColumnName(cursor.getColumnIndex(dbHelper.ITEM_NAME)));
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
-            Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex("KEY_MESSAGE")));
-            messages.add(cursor.getString(cursor.getColumnIndex("KEY_MESSAGE")));
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex(dbHelper.ITEM_NAME)));
+            messages.add(cursor.getString(cursor.getColumnIndex(dbHelper.ITEM_NAME)));
             cursor.moveToNext();
         }
         cursor.close();
