@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void startWeather(View view) {
+        Log.i(ACTIVITY_NAME, "User clicked Weather");
+        Intent intent = new Intent(this, WeatherForecast.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
