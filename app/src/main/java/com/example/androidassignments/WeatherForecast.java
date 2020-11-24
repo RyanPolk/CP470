@@ -75,8 +75,7 @@ public class WeatherForecast extends AppCompatActivity {
             }
         });
     }
-
-
+    
     private class ForecastQuery extends AsyncTask<String, Integer, String> {
         private String currentTemp;
         private String minTemp;
